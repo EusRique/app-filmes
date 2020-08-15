@@ -33,13 +33,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginVertical: 10
   },
-
-  slideView: {
-    width: '100%',
-    height: 350,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
 })
 
 export default styles;

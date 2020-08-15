@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
-import { View, ScrollView, ImageBackground } from 'react-native';
+import React, { useState, useRef } from 'react'
+import { View, Text,  ScrollView, ImageBackground, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import Carousel from 'react-native-snap-carousel';
 
 import styles from './styles'
 import Search from '../../components/Search';
 
 function Landing() {
+  const { width: screenWidth } = Dimensions.get('window');
+  
+  const carouselRef = useRef(null);
+  
   const [lista, setLista] = useState([
     {
       title:"O Justiceiro",
@@ -45,6 +52,27 @@ function Landing() {
   ])
 
   const [background, setBackground] = useState(lista[0].img);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const _renderItem = ({ item, index }) => {
+    return (
+      <View>
+        <TouchableOpacity>
+          <Image 
+            source={{ uri: item.img}}
+            style={ styles.carouselImage }
+          />
+          <Text style={ styles.carouselText }> { item.title } </Text>
+          <MaterialIcons 
+            name="play-circle-outline" 
+            size={ 30 } 
+            color='#FFF' 
+            styles={styles.carouselIcon}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
   
   return(
     <ScrollView style={ styles.container}>
@@ -53,10 +81,38 @@ function Landing() {
           <ImageBackground
             source={{ uri: background }}
             style={ styles.imageBanner }
-            blurRadius={ 8 }
+            blurRadius={ 3 }
           >
             <View>
               <Search />
+            </View>
+            <View style={ styles.carouselSlideView }>
+              <Carousel
+                style={ styles.carousel }
+                ref={ carouselRef }
+                data={ lista }
+                renderItem={ _renderItem }
+                sliderWidth={screenWidth}
+                itemWidth={ 200 }
+                inactiveSlideOpacity={ 0.5 }
+                onSnapToItem={ (index) => {
+                  setBackground(lista[index].img)
+                  setActiveIndex(index)
+                }}
+              />
+            </View>
+            <View style={ styles.moreInfo }>
+              <View style={ styles.moreInfoItems }>
+                <Text style={ styles.movieTitle }> { lista[activeIndex].title } </Text>
+                <Text style={ styles.movieDescription }> { lista[activeIndex].text } </Text>
+              </View>
+              <TouchableOpacity style={styles.carouselIconItems}>
+                <MaterialIcons 
+                  name="queue" 
+                  color='#131313' 
+                  size={ 30 } 
+                />
+              </TouchableOpacity>
             </View>
           </ImageBackground>
         </View>

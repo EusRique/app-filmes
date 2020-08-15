@@ -1,12 +1,10 @@
 import React from 'react';
-
 import { TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import styles from './styles'
 
 function Search() {
-
   return(
     <>
       <View style={ styles.viewSearch }>
@@ -22,10 +20,6 @@ function Search() {
       <Text style={ styles.title }>
         Acabou de chegar
       </Text>
-
-      <View style={ styles.slideView }>
-
-      </View>
     </>
   )
 }
