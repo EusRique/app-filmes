@@ -18,7 +18,7 @@ function Search() {
       </View>
 
       <Text style={ styles.title }>
-        Acabou de chegar
+        Histórico de Assistidos!
       </Text>
     </>
   )

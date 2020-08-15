@@ -63,12 +63,6 @@ function Landing() {
             style={ styles.carouselImage }
           />
           <Text style={ styles.carouselText }> { item.title } </Text>
-          <MaterialIcons 
-            name="play-circle-outline" 
-            size={ 30 } 
-            color='#FFF' 
-            styles={styles.carouselIcon}
-          />
         </TouchableOpacity>
       </View>
     )
