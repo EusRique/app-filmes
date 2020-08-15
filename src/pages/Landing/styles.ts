@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   movieDescription: {
     paddingLeft: 15,
     fontSize: 14,
-    fontFamily: 'Poppins_400SemiBold',
+    fontFamily: 'Poppins_400Regular',
     color: '#131313'
   },
 
